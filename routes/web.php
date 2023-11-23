@@ -46,8 +46,15 @@ Route::get('/dashboard', function (UsersDataTable $dataTable) {
 
 Route::get('/shop', [CartController::class, 'shop'])->name('shop');
 
-
 Route::get('/cart', [CartController::class, 'cart'])->name('cart');
+
+Route::get('add-to-cart/{product_id}', [CartController::class, 'addToCart'])->name('add-to-cart');
+
+
+Route::get('qty-increament/{rowId}', [CartController::class, 'qtyIncreament'])->name('qty-increament');
+
+Route::get('qty-decreament/{rowId}', [CartController::class, 'qtyDecreament'])->name('qty-decreament');
+
 
 
 

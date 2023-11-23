@@ -23,14 +23,15 @@
                                     <h5 class="mb-0">Cart - 2 items</h5>
                                 </div>
                                 <div class="card-body">
-                                    {{-- @foreach (Cart::content() as $product) --}}
-                                    <!-- Single item -->
+                                    @foreach (Cart::content() as $product)
+
+
                                     <div class="row">
                                         <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
                                             <!-- Image -->
                                             <div class="bg-image hover-overlay hover-zoom ripple rounded"
                                                 data-mdb-ripple-color="light">
-                                                <img src="{{asset('product3.jpg')}}"
+                                                <img src="{{asset($product->options->image)}}"
                                                     class="w-100" />
                                                 <a href="#!">
                                                     <div class="mask"
@@ -42,7 +43,7 @@
 
                                         <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
                                             <!-- Data -->
-                                            <p><strong>Jacket</strong></p>
+                                            <p><strong>{{$product->name}}</strong></p>
                                             <p>Color: red</p>
                                             <p>Size: M</p>
 
@@ -55,16 +56,16 @@
                                         <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                                             <!-- Quantity -->
                                             <div class="d-flex mb-4" style="max-width: 300px">
-                                                <a href="" class="btn btn-primary me-2">
+                                                <a href="{{route('qty-decreament', $product->rowId)}}" class="btn btn-primary me-2">
                                                     &#8722;
                                                 </a>
 
                                                 <div class="form-outline">
-                                                    <input id="form1" min="0" name="quantity" value="5"
+                                                    <input id="form1" min="0" name="quantity" value="{{$product->qty}}"
                                                         type="number" class="form-control" />
                                                 </div>
 
-                                                <a href="" class="btn btn-primary  ms-2">
+                                                <a href="{{route('qty-increament', $product->rowId)}}" class="btn btn-primary  ms-2">
                                                     &#43;
                                                 </a>
                                             </div>
@@ -72,7 +73,7 @@
 
                                             <!-- Price -->
                                             <p class="text-start text-md-center">
-                                                <strong>$22.00</strong>
+                                                <strong>${{$product->price}}</strong>
                                             </p>
                                             <!-- Price -->
                                         </div>
@@ -80,7 +81,7 @@
                                     </div>
                                     <!-- Single item -->
                                     <hr class="my-4" />
-                                    {{-- @endforeach --}}
+                                    @endforeach
 
 
                                 </div>
@@ -94,6 +95,7 @@
                                     <h5 class="mb-0">Summary</h5>
                                 </div>
                                 <div class="card-body">
+
                                     <ul class="list-group list-group-flush">
                                         <li
                                             class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
